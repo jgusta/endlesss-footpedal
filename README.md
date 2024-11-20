@@ -13,15 +13,19 @@ Requires libraries:
 ///////////////////////////////////////
 // buttons defined from left to right.
 // pins are all mixed up.
-// These are mine. 
+// These are mine.
 // (o)   = pushbutton
 // [!]   = three-way switch
 // (*)   = led
 // (0)   = momentary guitar pedal switch
 // (U)   = Switchable TRS analog input jack
+// (E)   = Rotary Encoder w/ pushbutton
 ///////////////////////////////////////
-//               (U)       (U) 
-// pin:         A0/24     A1/25  
+//               (U)       (U)
+// pin:         A0/24     A1/25
+//
+//          (E)
+//pin:    32/31/30
 //
 //               (o)   [!]   [!]
 // pin:           8    9/10  11/12
@@ -34,7 +38,7 @@ Requires libraries:
 ///////////////////////////////////////
 ```
 
-Foot Switches have a debounce period, so long as the led is on, they cannot be retriggered.
+Foot Buttons have a debounce period, so long as the led is on, they cannot be retriggered.
 Switches change the footswitches to a different bank of midi CCs.
 Analog inputs are for expression pedals. 
 They are self-calibrating, just move pedal up and down once and it will adjust to that range.

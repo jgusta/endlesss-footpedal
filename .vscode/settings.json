@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "*.csv": "csv",
+    "*.html": "html",
+    "*.plist": "plist",
+    "*.strings": "plist",
+    "*.cpp": "ino",
+    "cstddef": "cpp"
+  }
+}

@@ -1,38 +1,42 @@
 #include <ResponsiveAnalogRead.h>
+#include "enums.h"
 #include "functions.h"
 #include "vars.h"
+#include "midiReceive.h"
 
 void setup() {
-  Serial.begin(9600);
-  for (uint8_t i = 0; i < 4; i++)
-    pinMode(Lds[i], OUTPUT);
+  Serial.begin(115200);
+  midiSetup();
+  for (uint8_t i = 0; i < 4; i++) pinMode(Lds[i], OUTPUT);
   for (int i = 0; i < 4; i++) {
     buttons[i].attach(Bts[i], INPUT_PULLUP);
     buttons[i].interval(40);
     buttons[i].setPressedState(LOW);
   }
-  buttonT.attach(BtT, INPUT_PULLUP);
+  buttonT.attach(BUTTON_T, INPUT_PULLUP);
   buttonT.interval(40);
-  buttonT.setPressedState(HIGH);
-  pinMode(S1u, INPUT_PULLUP);
-  pinMode(S1d, INPUT_PULLUP);
-  pinMode(S2u, INPUT_PULLUP);
-  pinMode(S2d, INPUT_PULLUP);
-  pinMode(Ex1D, INPUT_PULLUP);
-  pinMode(Ex2D, INPUT_PULLUP);
-  Serial.println("booting");
+  buttonT.setPressedState(LOW);
+  pinMode(SWITCH_1_UP, INPUT_PULLUP);
+  pinMode(SWITCH_1_DOWN, INPUT_PULLUP);
+  pinMode(SWITCH_2_UP, INPUT_PULLUP);
+  pinMode(SWITCH_2_DOWN, INPUT_PULLUP);
+  pinMode(EXPRESSION_1_DIGITAL, INPUT_PULLUP);
+  pinMode(EXPRESSION_2_DIGITAL, INPUT_PULLUP);
+  // A
+  pinMode(EncCk, INPUT);
+  // B
+  pinMode(EncDt, INPUT);
+
+  delay(200);
+  logToSerial("booting", Sgfs::LogLevel::INFO);
   bootSequence();
+  logToSerial("ready", Sgfs::LogLevel::INFO);
 }
-
-
 
 void loop() {
   updateButtons();
   checkButtons();
   checkExps();
   t.handle();
-  while (usbMIDI.read()) {
-    // discard incoming messages
-  }
-  delay(5);
+  usbMIDI.read();
 }

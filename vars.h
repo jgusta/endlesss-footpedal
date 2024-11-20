@@ -1,68 +1,47 @@
 #ifndef VARS_H
 #define VARS_H
 
-#include <Bounce2.h> 
-#include <ResponsiveAnalogRead.h>
 #include <AsyncTimer.h>
-///////////////////////////////////////
-// buttons defined from left to right.
-// pins are all mixed up.
-// These are mine.
-// (o)   = pushbutton
-// [!]   = three-way switch
-// (*)   = led
-// (0)   = momentary guitar pedal switch
-// (U)   = Switchable TRS analog input jack
-///////////////////////////////////////
-//               (U)       (U)
-// pin:         A0/24     A1/25
-//
-//               (o)   [!]   [!]
-// pin:           8    9/10  11/12
-//
-//         (*)   (*)   (*)   (*)
-// pin:     2     3     1     0
-//
-//         (0)   (0)   (0)   (0)
-// pin:     7     6     5     4
-///////////////////////////////////////
+#include <Bounce2.h>
+#include <ResponsiveAnalogRead.h>
 
+#define LOG_LEVEL 3
 
 #define DELAY 100
 
-#define Ld1 2
-#define Ld2 3
-#define Ld3 1
-#define Ld4 0
+#define LED_1 2
+#define LED_2 3
+#define LED_3 1
+#define LED_4 0
 
-#define Bt1 7
-#define Bt2 6
-#define Bt3 5
-#define Bt4 4
+#define BUTTON_1 7
+#define BUTTON_2 6
+#define BUTTON_3 5
+#define BUTTON_4 4
 
-#define BtT 8
+#define BUTTON_T 8
 
-#define S1u 11
-#define S1d 12
-#define S2u 10
-#define S2d 9 
+#define SWITCH_1_UP 11
+#define SWITCH_1_DOWN 12
+#define SWITCH_2_UP 10
+#define SWITCH_2_DOWN 9
 
+// AKA OUT A
+#define EncCk 32
+// AKA OUT B
+#define EncDt 31
+#define EncSw 30
 
 // ANALOG INPUT 1 (FURTHEST RIGHT)
-//15
-#define Ex1A A1
-#define Ex1D 25
-
+#define EXPRESSION_1_ANALOG A1
+#define EXPRESSION_1_DIGITAL 25
 
 // ANALOG INPUT 2 (MIDDLE)
-// pin 14
-#define Ex2A A0
-#define Ex2D 24
-
+#define EXPRESSION_2_ANALOG A0
+#define EXPRESSION_2_DIGITAL 24
 
 extern uint8_t Lds[4];
 extern uint8_t Bts[4];
-extern uint8_t Btx[5];
 extern uint8_t Sws[4];
 extern uint8_t ExAs[2];
 extern uint8_t ExDs[2];
@@ -93,5 +72,7 @@ extern ResponsiveAnalogRead analogs[2];
 
 extern unsigned short intervals[5];
 
+
+
 extern AsyncTimer t;
-#endif // VARS_H
+#endif  // VARS_H
